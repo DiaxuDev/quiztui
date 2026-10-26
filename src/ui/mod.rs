@@ -3,7 +3,7 @@ use ratatui::{
     layout::{Constraint, Layout, Rect},
     style::Style,
     text::Text,
-    widgets::{Block, Paragraph},
+    widgets::{Block, LineGauge, Paragraph},
 };
 
 use crate::app::{App, State};
@@ -21,6 +21,7 @@ pub fn render(app: &App, frame: &mut Frame) {
     render_question(app, frame, layout[0]);
     render_textarea(app, frame, layout[1]);
     render_answer(app, frame, layout[2]);
+    render_progress(app, frame, layout[3]);
 }
 
 fn render_question(app: &App, frame: &mut Frame, area: Rect) {
@@ -58,4 +59,15 @@ fn render_answer(app: &App, frame: &mut Frame, area: Rect) {
 
         frame.render_widget(paragraph, area);
     }
+}
+
+fn render_progress(app: &App, frame: &mut Frame, area: Rect) {
+    let (complete, all) = app.stats();
+
+    let gauge = LineGauge::default()
+        .filled_style(Style::new().green())
+        .unfilled_style(Style::new().red())
+        .ratio(complete as f64 / all as f64);
+
+    frame.render_widget(gauge, area);
 }

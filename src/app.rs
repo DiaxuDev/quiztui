@@ -42,6 +42,10 @@ impl App {
         &self.cards[self.current_card]
     }
 
+    pub fn stats(&self) -> (usize, usize) {
+        (self.cards.len() - self.set.len(), self.cards.len())
+    }
+
     pub fn handle_keypress(&mut self, event: &crossterm::event::KeyEvent) {
         match event.code {
             KeyCode::Esc => self.quit(),
