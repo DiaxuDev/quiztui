@@ -1,6 +1,6 @@
 use ratatui::{
     Frame,
-    layout::{Constraint, Direction, Layout, Rect},
+    layout::{Constraint, Layout, Rect},
     style::Style,
     text::Text,
     widgets::{Block, Paragraph},
@@ -9,15 +9,14 @@ use ratatui::{
 use crate::app::{App, State};
 
 pub fn render(app: &App, frame: &mut Frame) {
-    let layout = Layout::default()
-        .direction(Direction::Vertical)
-        .constraints(vec![
-            Constraint::Length(1),
-            Constraint::Length(3),
-            Constraint::Length(1),
-        ])
-        .margin(1)
-        .split(frame.area());
+    let layout = Layout::vertical([
+        Constraint::Length(1),
+        Constraint::Length(3),
+        Constraint::Length(1),
+        Constraint::Length(1),
+    ])
+    .margin(1)
+    .split(frame.area());
 
     render_question(app, frame, layout[0]);
     render_textarea(app, frame, layout[1]);
