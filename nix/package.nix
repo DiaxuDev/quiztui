@@ -28,7 +28,7 @@ rustPlatform.buildRustPackage (finalAttrs: {
   enableParallelBuilding = true;
 
   meta = {
-    description = "Quizzes in your terminal";
+    description = "Flashcards in your terminal";
     homepage = "github.com/DiaxuDev/quiztui";
     license = lib.licenses.mpl20;
     mainProgram = "quiztui";
