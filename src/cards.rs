@@ -35,9 +35,7 @@ pub fn parse_cards() -> io::Result<Vec<Flashcard>> {
 }
 
 impl Flashcard {
-    pub fn check(&self, input: &str) -> bool {
-        let word = deunicode(&self.definition);
-
+    fn compare(word: &str, input: &str) -> bool {
         if let Some((root, suffix)) = word.split_once('/') {
             if input == root {
                 return true;
@@ -47,6 +45,10 @@ impl Flashcard {
         } else {
             word == input
         }
+    }
+
+    pub fn check(&self, input: &str) -> bool {
+        Self::compare(&self.definition, input) || Self::compare(&deunicode(&self.definition), input)
     }
 }
 
