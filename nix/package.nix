@@ -29,7 +29,7 @@ rustPlatform.buildRustPackage (finalAttrs: {
 
   meta = {
     description = "Flashcards in your terminal";
-    homepage = "github.com/DiaxuDev/quiztui";
+    homepage = "https://github.com/DiaxuDev/quiztui";
     license = lib.licenses.mpl20;
     mainProgram = "quiztui";
   };
